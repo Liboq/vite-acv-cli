@@ -1,0 +1,31 @@
+{
+  "name": "vite-acv-cli",
+  "version": "1.0.0",
+  "description": "vue3-vant-mobile-template",
+  "main": "index.js",
+  "bin": {
+    "vite-acv": "./bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Liboq/vite-acv-cli.git"
+  },
+  "keywords": [],
+  "author": "lbq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Liboq/vite-acv-cli/issues"
+  },
+  "homepage": "https://github.com/Liboq/vite-acv-cli#readme",
+  "dependencies": {
+    "chalk": "^5.0.1",
+    "commander": "^9.4.0",
+    "download-git-repo": "^3.0.2",
+    "fs": "0.0.1-security",
+    "inquirer": "^8.0.0",
+    "ora": "^6.1.2"
+  }
+}
