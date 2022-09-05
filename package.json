@@ -1,6 +1,6 @@
 {
   "name": "vite-acv-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "vue3-vant-mobile-template",
   "main": "index.js",
   "bin": {
@@ -21,11 +21,13 @@
   },
   "homepage": "https://github.com/Liboq/vite-acv-cli#readme",
   "dependencies": {
-    "chalk": "^5.0.1",
+    "@darkobits/lolcatjs": "^3.0.0",
+    "chalk": "^3.0.0-beta.2",
     "commander": "^9.4.0",
     "download-git-repo": "^3.0.2",
+    "figlet": "^1.5.2",
     "fs": "0.0.1-security",
     "inquirer": "^8.0.0",
-    "ora": "^6.1.2"
+    "ora": "^5.4.1"
   }
 }

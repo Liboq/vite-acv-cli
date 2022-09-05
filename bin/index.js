@@ -1,46 +1,37 @@
 #!/usr/bin/env node
 
-const { readFileSync } = require("fs");
+const { readFileSync,existsSync } = require("fs");
+const { Vite_Vant_Pinia,Taro_React_Redux } = require("../tmp/index.js");
 
 /* eslint-disable import/extensions */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { Command } = require("commander");
-const { clone } = require("../command/index.js");
+const { clone,drawBigName } = require("../command/index.js");
 const v = readFileSync(__dirname + "../../package.json");
-const { version } = JSON.parse(v);
+const { version,name } = JSON.parse(v);
+const chalk = require('chalk')
+const ora = require('ora')
 
 const program = new Command();
 const inquirer = require("inquirer");
 
-program.version(version);
+const spinner = ora(
+  {
+      prefixText :  (() => {'正在下载模板'})(),
+      color:'blue',
+  }
+)
+program.version(chalk.bgBlueBright(version));
 program.command("v").action(async () => {
-  inquirer
-    .prompt([
-      {
-        type: "list",
-        name: "type",
-        message: "项目类型",
-        default: "vue",
-        choices: [
-          { name: "vue", value: "vue" },
-          { name: "react", value: "react" },
-          { name: "jq", value: "jq" },
-        ],
-      },
-    ])
-    .then((answers) => {
-      console.log(answers);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  drawBigName(version,name)
 });
 
 program
   .command("init")
   .description("clone")
   .action(async () => {
+    drawBigName(version,name),
     inquirer
       .prompt([
         {
@@ -52,22 +43,28 @@ program
             {
               name: "Vite_Vant_Pinia",
               value:
-                "https://github.com/Liboq/vue3-vant-mobile-template.git#master",
+                `${Vite_Vant_Pinia}`,
             },
-            { name: "react", value: "react" },
-            { name: "weixin", value: "weixin" },
+            { name: "Taro_React_Redux", value: `${Taro_React_Redux}` },
           ],
         },
         {
             type:"input",
             name:"localPath",
             message:'请为它取名并设置地址',
-            default:'src/vite-vant-tempalte'
+            default:'tempalte'
         }
       ])
       .then((answers) => {
-        console.log("正在加速下载...");
+        if(!existsSync(answers.localPath)){
+          spinner.start()
         clone(answers);
+        spinner.stop('加载完成')
+        }
+        else{
+          console.log(chalk.red('项目已存在，请重新取名'));
+        }
+       
       })
       .catch((error) => {
         console.log(error);
