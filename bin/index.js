@@ -52,7 +52,7 @@ program
             type:"input",
             name:"localPath",
             message:'请为它取名并设置地址',
-            default:'tempalte'
+            default:'template'
         }
       ])
       .then((answers) => {
